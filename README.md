@@ -137,29 +137,10 @@ Weitere Hilfestellungen finden Sie in diesem Abschnitt.
 
 ### Textein- und Ausgabe
 
-Sie können zur Textein- und Ausgabe entweder C-Syntax mittels `printf` und `scanf` (C-Style) oder `std::cout` und `std::cin` (C++ Style) nutzen.
-
-Für `printf` und `scanf` müssen Sie die C-Headerdatei `cstdio` inkludieren:
-
-```C
-#include <cstdio>
-```
-
 Für `std::cout` und `std::cin` müssen Sie die C++-Headerdatei `iostream` inkludieren:
 
 ```C++
 #include <iostream>
-```
-
-#### Beispielcode zu `printf`:
-
-```C++
-printf("Diese Zeile Code erzeugt eine Textausgabe ohne Zeilenumbruch");
-printf("Diese Zeile Code erzeugt eine Textausgabe mit Zeilenumbruch\n"); // \n erzeugt einen Zeilenumbruch
-int number = 5;
-int another_number = 3;
-printf("Der Wert von number ist %d.\n", number); // %d wird mit dem Wert von number ersetzt
-printf("Ausgabe von zwei Variablen: %d und %d\n", number, another_number);
 ```
 
 #### Beispielcode zu `std::cout`:
@@ -171,15 +152,6 @@ int number = 5;
 std::cout << "Der Wert von number ist " << number "." << std::endl;
 int another_number = 3;
 std::cout <<  "Ausgabe von zwei Variablen: " << number << " und " << another_number << std::endl;
-```
-
-#### Beispielcode zu `scanf`:
-
-```C++
-int number = 0;
-printf("Bitte geben Sie eine Zahl zwischen 1 und 3 ein: ");
-scanf("%d", &number); // Achtung: & vor Variable nicht vergessen!
-printf("Sie haben %d eingegeben.\n", number);
 ```
 
 #### Beispielcode zu `std::cin`:
