@@ -1,0 +1,58 @@
+
+/**
+ * Diese Datei beschreibt, was VS Code bei drücken von CTRL+SHIFT+B
+ * ausführen soll (ausführen der Build-Task). Eine Beschreibung 
+ * hierzu ist auch zu finden unter:
+ * - https://code.visualstudio.com/docs/editor/tasks
+ */
+ {
+    "version": "2.0.0",
+    "tasks": [
+        /** 
+         * Erster Schritt unseres Build-Prozesses: 
+         * CMake ausführen um Ninja-Files zu generieren
+         */
+        {
+            "label": "Run CMake",   // Name der Task
+            "type": "shell",        // Ausführen der Befehle in einer Shell
+            "options": {
+                "cwd": "${workspaceRoot}"   // Pfad in dem die Befehle ausgeführt werden sollen
+            },
+            "command": "cmake",     // Auszuführender Befehl
+
+            // Parameter die an cmake übergeben werden
+            "args": [
+                "-Bbuild",
+                "-G",
+                "\"Ninja\"",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+            ],
+        },
+        /**
+         * Zweiter Schritt: ninja ausführen um das Projekt zu bauen
+         */
+        {
+            "label": "ninja",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "command": "ninja",
+            "args": [
+                "-Cbuild"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Run CMake"
+            ],
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": ["autoDetect", "${workspaceRoot}/build"]
+            }
+        }
+    ]
+}
