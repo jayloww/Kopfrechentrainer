@@ -121,7 +121,7 @@ Nutzen Sie hierfür die im Folgenden gegebenen Hilfestellungen.
 
 ## Hilfestellungen
 
-Für die Lösung dieser Aufgabe benötigten Sie die folgenden in der Vorlesung kennengelernten Sprachelemente.
+Für die Lösung dieser Aufgabe benötigten Sie die in der Vorlesung kennengelernten Sprachelemente.
 Weitere Hilfestellungen finden Sie in diesem Abschnitt.
 
 ### Empfohlene Vorgehensweise
@@ -169,7 +169,7 @@ std::cout << "Sie haben " << number << " eingegeben." << std::endl;
 Um sogenannte Pseudozufallszahlen in C/C++ zu generieren, können Sie die Funktion `rand` nutzen.
 Die Funktion liefert eine zufällige Zahl zwischen 0 und `RAND_MAX` zurück, wobei `RAND_MAX` typischerweise dem Wert $`2^{32-1}=2147483648`$ entspricht.
 
-Um nun z.B. eine Zufallszahl zwischen 1 und 6 zu erzeugen, berechnet man mit Hilfe des sog. Modulo-Operators den Rest der Division durch 6:
+Um nun z.B. eine Zufallszahl zwischen 1 und 6 zu erzeugen, berechnet man mit Hilfe des sog. Modulo-Operators den Rest der Division durch 6 und addiert 1:
 
 ```C++
 int random_number = rand();        // Liefert eine Zufallszahl zwischen 0 und RAND_MAX
