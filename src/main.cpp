@@ -2,7 +2,7 @@
 
 int main()
 {
-    std::cout << "***************************************" << std::endl;
+    std::cout << "\n***************************************" << std::endl;
     std::cout << "* Willkommen beim Kopfrechentraining. *" << std::endl;
     std::cout << "***************************************\n" << std::endl;
 
@@ -11,7 +11,7 @@ int main()
 
     while (true)
     {
-        std::cout << "Ihre Gesamtpunktzahl beträgt: " << total_score << "Punkte" << std::endl;
+        std::cout << "Ihre Gesamtpunktzahl beträgt: " << total_score << " Punkte\n" << std::endl;
 
         std::cout << "Hauptmenü" << std::endl;
         std::cout << "=========\n" << std::endl;
@@ -31,14 +31,14 @@ int main()
             std::cin.ignore(1000, '\n');
         }
 
+        int score = 0;
+        bool keep_playing = true;
         switch (number)
         {
         case 1:
-            std::cout << "***************************************" << std::endl;
+            std::cout << "\n***************************************" << std::endl;
             std::cout << "* Willkommen beim Einmaleinstraining. *" << std::endl;
             std::cout << "***************************************\n" << std::endl;
-            
-            int score = 0;
             while (true)
             {
                 int answer = 0;
@@ -48,25 +48,81 @@ int main()
                 std::cin >> answer;
                 if(answer != random_num1 * random_num2)
                 {
-                    std::cout << "Das ist leider falsch. Sie haben " << score << "Fragen richtig beantwortet.\n" << std::endl;
+                    std::cout << "\nDas ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n" << std::endl;
                     total_score += score;
                     break;
                 }
-                score = score + 1;
+                score += 1;
                 std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << std::endl;
             }
             break;
 
         case 2:
-            std::cout << "Plus/Minus" << std::endl;
+            std::cout << "\n***************************************" << std::endl;
+            std::cout << "* Willkommen beim Plus/Minustraining. *" << std::endl;
+            std::cout << "***************************************\n" << std::endl;
+            while (keep_playing)
+            {        
+                int answer = 0;
+                int random_num1 = std::rand() % 9 + 1;
+                int random_num2 = std::rand() % 9 + 1;
+                int plus_minus = std::rand() % 2 + 1;
+                switch(plus_minus)
+            {
+                case 1:
+                std::cout << "Wie viel ist " << random_num1 << " + " << random_num2 << "? ";
+                std::cin >> answer;
+                if(answer != random_num1 + random_num2)
+                {
+                    std::cout << "\nDas ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n" << std::endl;
+                    total_score += score;
+                    keep_playing = false;
+                    break;
+                }
+                score += 1;
+                std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << std::endl;
+                break;
+                
+                case 2:
+                std::cout << "Wie viel ist " << random_num1 << " - " << random_num2 << "? ";
+                std::cin >> answer;
+                if(answer != random_num1 - random_num2)
+                {
+                    std::cout << "\nDas ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n" << std::endl;
+                    total_score += score;
+                    keep_playing = false;
+                    break;
+                }
+                score += 1;
+                std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << std::endl;
+                break;
+            }
+            }
             break;
 
         case 3:
-            std::cout << "Quadratzahlen" << std::endl;
+            std::cout << "\n***************************************" << std::endl;
+            std::cout << "* Willkommen beim Quadratzahlentraining. *" << std::endl;
+            std::cout << "***************************************\n" << std::endl;
+            while(true)
+            {
+                int answer = 0;
+                int random_num = rand() % 9 + 1;
+                std::cout << "Wie viel ist " << random_num << " x " << random_num << "? ";
+                std::cin >> answer;
+                if(answer != random_num * random_num)
+                {
+                    std::cout << "\nDas ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n" << std::endl;
+                    total_score += score;
+                    break;
+                }
+                score += 1;
+                std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << std::endl;
+            }
             break;
 
         case 4:
-            std::cout << "Sie haben das spiel beendet" << std::endl;
+            std::cout << "Sie haben insgesamt " << total_score << " Punkte erreicht." << std::endl;
             return 0;
             break;
 
