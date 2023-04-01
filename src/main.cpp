@@ -8,6 +8,7 @@ enum class Option
     PLUS_MINUS = 2,
     QUADRATZAHLEN = 3,
     BEENDEN = 4,
+    INVALID = 5,
 };
 
 void printWelcomeMessage()
@@ -17,7 +18,7 @@ void printWelcomeMessage()
     std::cout << "***************************************\n\n";
 }
 
-Option showMainMenu()
+Option mainMenu()
 {
     int number = 0;
 
@@ -32,6 +33,19 @@ Option showMainMenu()
     std::cin >> number;
     std::cout << "\n";
 
+    if (std::cin.fail())
+    {
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+    }
+
+    if (number < 1 || number >= static_cast<int>(Option::INVALID))
+    {
+        std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n";
+        std::cout << "Fehler! Bitte geben Sie eine Zahl zwischen 1 und 4 ein! \n";
+        std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n";
+        return Option::INVALID;
+    }
     return static_cast<Option>(number);
 }
 
@@ -134,13 +148,7 @@ int main()
     {
         std::cout << "Ihre Gesamtpunktzahl beträgt: " << total_score << " Punkte\n\n";
 
-        Option selected_option = showMainMenu();
-
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
-        }
+        Option selected_option = mainMenu();
 
         int score = 0;
         bool keep_playing = true;
@@ -162,11 +170,12 @@ int main()
             std::cout << "Sie haben insgesamt " << total_score << " Punkte erreicht.\n";
             return 0;
 
-        default:
-            std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n";
-            std::cout << "Fehler! Bitte geben Sie eine Zahl zwischen 1 und 4 ein! \n";
-            std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n";
+        case Option::INVALID:
             break;
+
+        default:
+            std::cout << "Unreachable: Unknown option " << static_cast<int>(selected_option) << "\n";
+            return 1;
         }
     }
 }
