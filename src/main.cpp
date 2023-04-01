@@ -12,7 +12,7 @@ enum class Option
 
 void printWelcomeMessage()
 {
-    std::cout << "***************************************\n\n";
+    std::cout << "***************************************\n";
     std::cout << "* Willkommen beim Kopfrechentraining. *\n";
     std::cout << "***************************************\n\n";
 }
@@ -33,6 +33,94 @@ Option showMainMenu()
     std::cout << "\n";
 
     return static_cast<Option>(number);
+}
+
+int einmaleins()
+{
+    std::cout << "***************************************\n";
+    std::cout << "* Willkommen beim Einmaleinstraining. *\n";
+    std::cout << "***************************************\n\n";
+    int score = 0;
+    while (true)
+    {
+        int answer = 0;
+        int random_num1 = std::rand() % 10 + 1;
+        int random_num2 = std::rand() % 10 + 1;
+        std::cout << "Wie viel ist " << random_num1 << " x " << random_num2 << "? ";
+        std::cin >> answer;
+        std::cout << "\n";
+        if (answer != random_num1 * random_num2)
+        {
+            std::cout << "Das ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n\n";
+            return score;
+        }
+        score += 1;
+        std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << "\n";
+    }
+}
+
+int plusMinus()
+{
+    std::cout << "***************************************\n";
+    std::cout << "* Willkommen beim Plus/Minustraining. *\n";
+    std::cout << "***************************************\n\n";
+    while (true)
+    {
+        int answer = 0;
+        int score = 0;
+        int random_num1 = std::rand() % 10 + 1;
+        int random_num2 = std::rand() % 10 + 1;
+        bool plus_minus = std::rand() % 2 == 0;
+        if (plus_minus)
+        {
+            std::cout << "Wie viel ist " << random_num1 << " + " << random_num2 << "? ";
+            std::cin >> answer;
+            std::cout << "\n";
+            if (answer != random_num1 + random_num2)
+            {
+                std::cout << "Das ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n\n";
+                return score;
+            }
+            score += 1;
+            std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << "\n";
+        }
+        else
+        {
+            std::cout << "Wie viel ist " << random_num1 << " - " << random_num2 << "? ";
+            std::cin >> answer;
+            std::cout << "\n";
+            if (answer != random_num1 + random_num2)
+            {
+                std::cout << "Das ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n\n";
+                return score;
+            }
+            score += 1;
+            std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << "\n";
+        }
+    }
+}
+
+int quadratzahlen()
+{
+    std::cout << "***************************************\n";
+    std::cout << "* Willkommen beim Quadratzahlentraining. *\n";
+    std::cout << "***************************************\n\n";
+    while (true)
+    {
+        int answer = 0;
+        int score = 0;
+        int random_num = rand() % 10 + 1;
+        std::cout << "Wie viel ist " << random_num << " x " << random_num << "? ";
+        std::cin >> answer;
+        std::cout << "\n";
+        if (answer != random_num * random_num)
+        {
+            std::cout << "Das ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n\n";
+            return score;
+        }
+        score += 1;
+        std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << "\n";
+    }
 }
 
 int main()
@@ -59,95 +147,20 @@ int main()
         switch (selected_option)
         {
         case Option::EINMALEINS:
-            std::cout << "\n***************************************\n";
-            std::cout << "* Willkommen beim Einmaleinstraining. *\n";
-            std::cout << "***************************************\n\n";
-            while (keep_playing)
-            {
-                int answer = 0;
-                int random_num1 = std::rand() % 10 + 1;
-                int random_num2 = std::rand() % 10 + 1;
-                std::cout << "Wie viel ist " << random_num1 << " x " << random_num2 << "? ";
-                std::cin >> answer;
-                if (answer != random_num1 * random_num2)
-                {
-                    std::cout << "\nDas ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n\n";
-                    total_score += score;
-                    keep_playing = false;
-                    break;
-                }
-                score += 1;
-                std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << "\n";
-            }
+            total_score += einmaleins();
             break;
 
         case Option::PLUS_MINUS:
-            std::cout << "\n***************************************\n";
-            std::cout << "* Willkommen beim Plus/Minustraining. *\n";
-            std::cout << "***************************************\n\n";
-            while (keep_playing)
-            {
-                int answer = 0;
-                int random_num1 = std::rand() % 10 + 1;
-                int random_num2 = std::rand() % 10 + 1;
-                bool plus_minus = std::rand() % 2 == 0;
-                if (plus_minus) {
-                    std::cout << "Wie viel ist " << random_num1 << " + " << random_num2 << "? ";
-                    std::cin >> answer;
-                    if (answer != random_num1 + random_num2)
-                    {
-                        std::cout << "\nDas ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n\n";
-                        total_score += score;
-                        keep_playing = false;
-                        break;
-                    }
-                    score += 1;
-                    std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << "\n";
-                    break;
-
-                } else {
-                    std::cout << "Wie viel ist " << random_num1 << " - " << random_num2 << "? ";
-                    std::cin >> answer;
-                    if (answer != random_num1 - random_num2)
-                    {
-                        std::cout << "\nDas ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n\n";
-                        total_score += score;
-                        keep_playing = false;
-                        break;
-                    }
-                    score += 1;
-                    std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << "\n";
-                    break;
-                }
-            }
+            total_score += plusMinus();
             break;
 
         case Option::QUADRATZAHLEN:
-            std::cout << "\n***************************************\n";
-            std::cout << "* Willkommen beim Quadratzahlentraining. *\n";
-            std::cout << "***************************************\n\n";
-            while (true)
-            {
-                int answer = 0;
-                int random_num = rand() % 10 + 1;
-                std::cout << "Wie viel ist " << random_num << " x " << random_num << "? ";
-                std::cin >> answer;
-                if (answer != random_num * random_num)
-                {
-                    std::cout << "\nDas ist leider falsch. Sie haben " << score << " Fragen richtig beantwortet.\n\n";
-                    total_score += score;
-                    keep_playing = false;
-                    break;
-                }
-                score += 1;
-                std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << "\n";
-            }
+            total_score += quadratzahlen();
             break;
 
         case Option::BEENDEN:
             std::cout << "Sie haben insgesamt " << total_score << " Punkte erreicht.\n";
             return 0;
-            break;
 
         default:
             std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n";
