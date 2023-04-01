@@ -90,10 +90,8 @@ int main()
                 int answer = 0;
                 int random_num1 = std::rand() % 10 + 1;
                 int random_num2 = std::rand() % 10 + 1;
-                int plus_minus = std::rand() % 2 + 1;
-                switch (plus_minus)
-                {
-                case 1:
+                bool plus_minus = std::rand() % 2 == 0;
+                if (plus_minus) {
                     std::cout << "Wie viel ist " << random_num1 << " + " << random_num2 << "? ";
                     std::cin >> answer;
                     if (answer != random_num1 + random_num2)
@@ -107,7 +105,7 @@ int main()
                     std::cout << "Korrekt!! Richtig beantwortete Fragen: " << score << "\n";
                     break;
 
-                case 2:
+                } else {
                     std::cout << "Wie viel ist " << random_num1 << " - " << random_num2 << "? ";
                     std::cin >> answer;
                     if (answer != random_num1 - random_num2)
